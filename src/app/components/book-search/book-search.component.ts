@@ -13,7 +13,7 @@ import {BookDetailsComponent} from '../book-details/book-details.component';
 export class BookSearchComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
-  dataSource;
+  dataSource = new MatTableDataSource();
 
   bookList: Book[];
   book: Book;
@@ -30,7 +30,6 @@ export class BookSearchComponent implements OnInit {
   getAllBooks() {
     this.bookSearchService.getAllBooks().subscribe(
       (books: Book[]) => {
-        console.log(books);
         this.bookList = books;
         this.dataSource = new MatTableDataSource<Book>(this.bookList);
       },

@@ -11,6 +11,5 @@ export class BookDetailsService {
 
   setBookDetail( book: Book ) {
     this.bookDetails = book;
-    console.log('../../../assets/images/{{bookDetails.image}}');
   }
 }

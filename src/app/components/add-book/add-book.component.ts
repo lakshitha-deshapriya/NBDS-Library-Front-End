@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -8,13 +8,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AddBookComponent implements OnInit {
   addBook: FormGroup;
+  uploadedImage: File;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.addBook = new FormGroup({
       'bookTitle': new FormControl(null, Validators.required),
-      'roomType': new FormControl(null, Validators.required),
+      'author': new FormControl(null, Validators.required),
       'startDate': new FormControl(null, Validators.required),
       'endDate': new FormControl(null, Validators.required),
       'noofrooms': new FormControl(null, Validators.required),
@@ -29,6 +31,15 @@ export class AddBookComponent implements OnInit {
       'country': new FormControl(null, Validators.required),
       'zipcode': new FormControl(null)
     });
+  }
+
+  onImageSelect(event) {
+    this.uploadedImage = <File>event.target.files[0];
+    console.log(this.uploadedImage);
+  }
+
+  uploadImage() {
+
   }
 
 }

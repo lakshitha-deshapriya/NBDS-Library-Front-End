@@ -1,14 +1,26 @@
-<mat-card style="margin: 5%">
+<mat-card style="margin: 3vw">
   <h4 style="text-align: center; color: rgba(107,120,141,0.87)">Add Book</h4>
   <mat-divider></mat-divider>
-  <mat-card-content>
-    <form [formGroup]="addBook">
-      <mat-form-field style="width: 250px">
-        <input type="text"
-               matInput
-               formControlName="bookTitle"
-               placeholder="Book Title">
-      </mat-form-field>
-    </form>
-  </mat-card-content>
+  <form [formGroup]="addBook">
+    <mat-form-field style="width: 30vw; padding-right: 1vw">
+      <input type="text"
+             matInput
+             formControlName="bookTitle"
+             placeholder="Book Title">
+    </mat-form-field>
+    <mat-form-field style="width: 20vw; padding-right: 1vw">
+      <input type="text"
+             matInput
+             formControlName="author"
+             placeholder="Author">
+    </mat-form-field>
+
+    <!--<td>-->
+    <!--<input style="display: none" type="file" (change)="onImageSelect($event)" #imageInput>-->
+    <!--<button mat-button (click)="imageInput.click()">Select Image</button>-->
+    <!--<button mat-raised-button color="primary" (click)="uploadImage()">Upload Image</button>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+  </form>
 </mat-card>

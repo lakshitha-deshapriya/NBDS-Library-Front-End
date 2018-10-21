@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Book} from '../../models/BookSearchTable';
+import {Book} from '../../models/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ export class BookDetailsService {
   constructor() { }
 
   setBookDetail( book: Book ) {
-    this.bookDetails = book;
+    if (book != null) {
+      this.bookDetails = book;
+    }    
   }
 }

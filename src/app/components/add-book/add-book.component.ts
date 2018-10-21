@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {BookSearchService} from '../../services/book-search/book-search.service';
+import {Book} from '../../models/Book';
+import { BookAddService } from 'src/app/services/book-add/book-add.service';
+import { Router } from '@angular/router';
+import { BookSearchComponent } from '../book-search/book-search.component';
+import { BookDetailsService } from 'src/app/services/book-details/book-details.service';
 
 @Component({
   selector: 'app-add-book',
@@ -9,37 +17,98 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class AddBookComponent implements OnInit {
   addBook: FormGroup;
   uploadedImage: File;
+  imageName: String;
+  imageSrc: string;
+  imageAdded: boolean = false;
+  newBook : Book;
+  savedBook : Book;
 
-  constructor() {
+  options: string[];
+  filteredOptions: Observable<string[]>;
+
+  constructor(private bookSearchService: BookSearchService, 
+    private bookAddService: BookAddService, 
+    private router: Router,
+    private bookDetailsService: BookDetailsService
+    ) {
   }
 
   ngOnInit() {
+    this.getAllCategories();
     this.addBook = new FormGroup({
       'bookTitle': new FormControl(null, Validators.required),
       'author': new FormControl(null, Validators.required),
-      'startDate': new FormControl(null, Validators.required),
-      'endDate': new FormControl(null, Validators.required),
-      'noofrooms': new FormControl(null, Validators.required),
-      'maxAdults': new FormControl(null, Validators.required),
-      'price': new FormControl(null, Validators.required),
-      'markup': new FormControl(null, Validators.required),
-      'phone': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'pbox': new FormControl(null, Validators.required),
-      'region': new FormControl(null),
-      'city': new FormControl(null, Validators.required),
-      'country': new FormControl(null, Validators.required),
-      'zipcode': new FormControl(null)
+      'category': new FormControl(null, Validators.required),
+      'description': new FormControl(null, Validators.required),
+      'publlisher': new FormControl(null, Validators.required),
+      'publishedDate': new FormControl(null, Validators.required),
+      'image': new FormControl(null),
     });
+  }
+
+  getAllCategories() {
+    this.bookSearchService.getAllCategories().subscribe(
+      (categories: string[]) => {
+        this.options = categories;
+        this.optionFilter();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  private optionFilter()
+  {
+    this.filteredOptions = this.addBook.get('category').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   onImageSelect(event) {
     this.uploadedImage = <File>event.target.files[0];
-    console.log(this.uploadedImage);
+    this.imageName = this.uploadedImage.name;
+    if (this.imageName.length>17) {
+      this.imageName = this.imageName.slice(0,17);
+      this.imageName = this.imageName.concat("...");
+    };
+
+    const reader = new FileReader();
+    reader.onload = event => this.imageSrc = reader.result;
+    this.imageAdded = true;
+    reader.readAsDataURL(this.uploadedImage);
   }
 
   uploadImage() {
 
   }
 
+  onSave(){
+    const formValues = this.addBook.value;
+    this.newBook = new Book(
+      formValues.bookTitle,
+      formValues.description,
+      formValues.author,
+      formValues.publishedDate,
+      formValues.category,
+      formValues.publlisher,
+      this.uploadedImage
+    );
+    console.log(this.newBook);
+    console.log(this.uploadedImage);
+    this.bookAddService.saveBook(this.newBook).subscribe(
+      (savedBook : Book) => {
+        this.savedBook = savedBook;
+      },
+      (error) => console.log(error)
+    );
+    this.bookDetailsService.setBookDetail(this.newBook);
+    this.router.navigate(['/showDetails']);
+  }
 }

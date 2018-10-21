@@ -4,6 +4,7 @@ import {BookSearchComponent} from './components/book-search/book-search.componen
 import {BookDetailsComponent} from './components/book-details/book-details.component';
 import {AddBookComponent} from './components/add-book/add-book.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import { ShowDetailsComponentComponent } from './components/add-book/show-details-component/show-details-component.component';
 
 
 const appRoutes: Routes = [
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
   {path: 'bookSearch', component: BookSearchComponent},
   {path: 'bookDetails', component: BookDetailsComponent},
   {path: 'addBook', component: AddBookComponent},
+  {path: 'showDetails', component: ShowDetailsComponentComponent},
   {path: 'page-not-found', component: PageNotFoundComponent},
   {path: '**', redirectTo: 'page-not-found'}
 ];

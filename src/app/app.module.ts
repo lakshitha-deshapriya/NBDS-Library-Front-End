@@ -42,6 +42,7 @@ import { MatAutocompleteModule,
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ShowDetailsComponentComponent } from './components/add-book/show-details-component/show-details-component.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     BookSearchComponent,
     BookDetailsComponent,
     AddBookComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ShowDetailsComponentComponent
   ],
   imports: [
     BrowserModule,

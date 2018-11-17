@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookDetailsService } from 'src/app/services/book-details/book-details.service';
 import { Book } from 'src/app/models/Book';
 import { Router } from '@angular/router';
+import { BookAddService } from 'src/app/services/book-add/book-add.service';
 
 @Component({
   selector: 'app-show-details-component',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class ShowDetailsComponentComponent implements OnInit {
   bookDetails: Book;
 
-  constructor(private bookDetailService: BookDetailsService, private router: Router) {
+  constructor(private bookAddService: BookAddService, private router: Router) {
   }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class ShowDetailsComponentComponent implements OnInit {
   }
 
   loadBookDetails() {
-    this.bookDetails = this.bookDetailService.bookDetails;
+    this.bookDetails = this.bookAddService.book;
     if (this.bookDetails == null) {
       this.router.navigate(['/page-not-found']);
     }

@@ -8,6 +8,7 @@ import { BookAddService } from 'src/app/services/book-add/book-add.service';
 import { Router } from '@angular/router';
 import { BookSearchComponent } from '../book-search/book-search.component';
 import { BookDetailsService } from 'src/app/services/book-details/book-details.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-add-book',
@@ -19,15 +20,15 @@ export class AddBookComponent implements OnInit {
   uploadedImage: File;
   imageName: String;
   imageSrc: string;
-  imageAdded: boolean = false;
-  newBook : Book;
-  savedBook : Book;
+  imageAdded = false;
+  newBook: Book;
+  savedBook: Book;
 
   options: string[];
   filteredOptions: Observable<string[]>;
 
-  constructor(private bookSearchService: BookSearchService, 
-    private bookAddService: BookAddService, 
+  constructor(private bookSearchService: BookSearchService,
+    private bookAddService: BookAddService,
     private router: Router,
     private bookDetailsService: BookDetailsService
     ) {
@@ -56,8 +57,7 @@ export class AddBookComponent implements OnInit {
     );
   }
 
-  private optionFilter()
-  {
+  private optionFilter() {
     this.filteredOptions = this.addBook.get('category').valueChanges
       .pipe(
         startWith(''),
@@ -74,10 +74,10 @@ export class AddBookComponent implements OnInit {
   onImageSelect(event) {
     this.uploadedImage = <File>event.target.files[0];
     this.imageName = this.uploadedImage.name;
-    if (this.imageName.length>17) {
-      this.imageName = this.imageName.slice(0,17);
-      this.imageName = this.imageName.concat("...");
-    };
+    if (this.imageName.length > 17) {
+      this.imageName = this.imageName.slice(0, 17);
+      this.imageName = this.imageName.concat('...');
+    }
 
     const reader = new FileReader();
     reader.onload = event => this.imageSrc = reader.result;
@@ -89,7 +89,7 @@ export class AddBookComponent implements OnInit {
 
   }
 
-  onSave(){
+  onSave() {
     const formValues = this.addBook.value;
     this.newBook = new Book(
       formValues.bookTitle,
@@ -98,17 +98,21 @@ export class AddBookComponent implements OnInit {
       formValues.publishedDate,
       formValues.category,
       formValues.publlisher,
-      this.uploadedImage
+      this.imageName
     );
-    console.log(this.newBook);
-    console.log(this.uploadedImage);
-    this.bookAddService.saveBook(this.newBook).subscribe(
-      (savedBook : Book) => {
-        this.savedBook = savedBook;
+    this.bookAddService.saveImage(this.uploadedImage).subscribe(
+      (image: File) => {
+        this.bookAddService.saveBook(this.newBook).subscribe(
+          (savedBook: Book) => {
+            this.bookAddService.book = savedBook;
+            this.router.navigate(['/showDetails']);
+            this.savedBook = savedBook;
+          },
+          (error) => console.log(error)
+        );
       },
       (error) => console.log(error)
     );
     this.bookDetailsService.setBookDetail(this.newBook);
-    this.router.navigate(['/showDetails']);
   }
 }

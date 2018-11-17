@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class BookAddService {
   baseURL = environment.baseURL;
-  book: Book[];
+  book: Book;
   responseMsg: string;
 
   constructor(private http: HttpClient) {}
@@ -16,5 +16,9 @@ export class BookAddService {
   saveBook(book) {
     this.book = book;
     return this.http.post(this.baseURL + 'books', this.book);
+  }
+
+  saveImage(image) {
+    return this.http.post(this.baseURL + 'books/uploadImage', image );
   }
 }

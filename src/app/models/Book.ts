@@ -8,15 +8,15 @@ export class Book {
   publisher: String;
   lastTakenPerson: String;
   lastTakenDate: Date;
-  image: File;
+  imageName: String;
 
-  constructor(bookTitle, description, author, publishedDate, category, publisher, image) {
+  constructor(bookTitle, description, author, publishedDate, category, publisher, imageName) {
     this.bookTitle = bookTitle;
     this.description = description;
     this.author = author;
     this.publishedDate = publishedDate;
     this.category = category;
     this.publisher = publisher;
-    this.image = image;
+    this.imageName = imageName;
   }
 }

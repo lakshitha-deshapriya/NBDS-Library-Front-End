@@ -100,19 +100,23 @@ export class AddBookComponent implements OnInit {
       formValues.publlisher,
       this.imageName
     );
-    this.bookAddService.saveImage(this.uploadedImage).subscribe(
-      (image: File) => {
-        this.bookAddService.saveBook(this.newBook).subscribe(
-          (savedBook: Book) => {
-            this.bookAddService.book = savedBook;
-            this.router.navigate(['/showDetails']);
-            this.savedBook = savedBook;
-          },
-          (error) => console.log(error)
-        );
-      },
-      (error) => console.log(error)
-    );
-    this.bookDetailsService.setBookDetail(this.newBook);
+
+    this.bookAddService.saveBook(this.uploadedImage,this.newBook);
+
+
+    // this.bookAddService.saveImage(this.uploadedImage).subscribe(
+    //   (image: File) => {
+    //     this.bookAddService.saveBook(this.newBook).subscribe(
+    //       (savedBook: Book) => {
+    //         this.bookAddService.book = savedBook;
+    //         this.router.navigate(['/showDetails']);
+    //         this.savedBook = savedBook;
+    //       },
+    //       (error) => console.log(error)
+    //     );
+    //   },
+    //   (error) => console.log(error)
+    // );
+    // this.bookDetailsService.setBookDetail(this.newBook);
   }
 }

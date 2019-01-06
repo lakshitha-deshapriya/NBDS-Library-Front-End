@@ -1,11 +1,11 @@
 <mat-card style="margin: 3vw">
-  <h4 style="text-align: center; color: rgba(107,120,141,0.87)">Add Book</h4>
+  <h4 style="text-align: center; color: rgba(107,120,141,0.87); font-family: 'Abhaya Libre', serif;">පොත අතුලු කරන්න</h4>
   <mat-divider></mat-divider>
   <form [formGroup]="addBook" style="padding-top: 1vw">
     <mat-grid-list cols="10">
       <mat-grid-tile [colspan]=4>
         <mat-form-field style="width: 100%; padding-right: 2vw;">
-          <input type="text" matInput formControlName="bookTitle" placeholder="Book Title">
+          <input type="text" matInput formControlName="bookTitle" placeholder="පොතේ නම">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=3>

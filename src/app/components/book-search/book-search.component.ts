@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { BookSearchService } from '../../services/book-search/book-search.service';
-import { Book } from '../../models/Book';
-import { BookDetailsService } from '../../services/book-details/book-details.service';
-import { BookDetailsComponent } from '../book-details/book-details.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
+import {BookSearchService} from '../../services/book-search/book-search.service';
+import {Book} from '../../models/Book';
+import {BookDetailsService} from '../../services/book-details/book-details.service';
+import {BookDetailsComponent} from '../book-details/book-details.component';
 
 @Component({
   selector: 'app-book-search',
@@ -35,7 +35,7 @@ export class BookSearchComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Book>(this.bookList);
       },
       (error) => console.log(error)
-    );    
+    );
   }
 
   applyFilter(filterValue: string) {
@@ -53,7 +53,7 @@ export class BookSearchComponent implements OnInit {
   openBookDetailsDialog() {
     const dialogRef = this.dialog.open(BookDetailsComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getAllBooks();
     });
   }

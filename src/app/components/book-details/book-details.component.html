@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-md-6">
       <mat-card>
-        <img mat-card-image src="../../../assets/images/{{bookDetails.image}}" style="margin-bottom: 5%">
+        <img mat-card-image [src]="domSanitizer.bypassSecurityTrustUrl(imageToShow)" style="margin-bottom: 5%" *ngIf="!isImageLoading">
         <mat-card-content style="text-align: center">
           <p>
             {{bookDetails.bookTitle}}.jpg

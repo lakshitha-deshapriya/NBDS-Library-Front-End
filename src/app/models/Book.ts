@@ -8,7 +8,7 @@ export class Book {
   publisher: String;
   lastTakenPerson: String;
   lastTakenDate: Date;
-  imageName: String;
+  imageName: string;
 
   constructor(bookTitle, description, author, publishedDate, category, publisher, imageName) {
     this.bookTitle = bookTitle;

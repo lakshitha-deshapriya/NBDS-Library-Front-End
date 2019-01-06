@@ -6,9 +6,9 @@ import {BookSearchService} from '../../services/book-search/book-search.service'
 import {Book} from '../../models/Book';
 import { BookAddService } from 'src/app/services/book-add/book-add.service';
 import { Router } from '@angular/router';
-import { BookSearchComponent } from '../book-search/book-search.component';
 import { BookDetailsService } from 'src/app/services/book-details/book-details.service';
-import { error } from '@angular/compiler/src/util';
+import {BookDetailsComponent} from '../book-details/book-details.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-add-book',
@@ -18,11 +18,10 @@ import { error } from '@angular/compiler/src/util';
 export class AddBookComponent implements OnInit {
   addBook: FormGroup;
   uploadedImage: File;
-  imageName: String;
+  imageName: string;
   imageSrc: string;
   imageAdded = false;
   newBook: Book;
-  savedBook: Book;
 
   options: string[];
   filteredOptions: Observable<string[]>;
@@ -30,7 +29,8 @@ export class AddBookComponent implements OnInit {
   constructor(private bookSearchService: BookSearchService,
     private bookAddService: BookAddService,
     private router: Router,
-    private bookDetailsService: BookDetailsService
+    private bookDetailsService: BookDetailsService,
+    public dialog: MatDialog
     ) {
   }
 
@@ -41,7 +41,7 @@ export class AddBookComponent implements OnInit {
       'author': new FormControl(null, Validators.required),
       'category': new FormControl(null, Validators.required),
       'description': new FormControl(null, Validators.required),
-      'publlisher': new FormControl(null, Validators.required),
+      'publisher': new FormControl(null, Validators.required),
       'publishedDate': new FormControl(null, Validators.required),
       'image': new FormControl(null),
     });
@@ -80,13 +80,9 @@ export class AddBookComponent implements OnInit {
     }
 
     const reader = new FileReader();
-    reader.onload = event => this.imageSrc = reader.result;
+    reader.onload = () => this.imageSrc = reader.result;
     this.imageAdded = true;
     reader.readAsDataURL(this.uploadedImage);
-  }
-
-  uploadImage() {
-
   }
 
   onSave() {
@@ -97,26 +93,21 @@ export class AddBookComponent implements OnInit {
       formValues.author,
       formValues.publishedDate,
       formValues.category,
-      formValues.publlisher,
+      formValues.publisher,
       this.imageName
     );
 
-    this.bookAddService.saveBook(this.uploadedImage,this.newBook);
+    this.bookAddService.saveBook(this.uploadedImage, this.newBook);
 
+    this.bookDetailsService.setBookDetail(this.newBook);
+    this.openBookDetailsDialog();
+  }
 
-    // this.bookAddService.saveImage(this.uploadedImage).subscribe(
-    //   (image: File) => {
-    //     this.bookAddService.saveBook(this.newBook).subscribe(
-    //       (savedBook: Book) => {
-    //         this.bookAddService.book = savedBook;
-    //         this.router.navigate(['/showDetails']);
-    //         this.savedBook = savedBook;
-    //       },
-    //       (error) => console.log(error)
-    //     );
-    //   },
-    //   (error) => console.log(error)
-    // );
-    // this.bookDetailsService.setBookDetail(this.newBook);
+  openBookDetailsDialog() {
+    const dialogRef = this.dialog.open(BookDetailsComponent);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/bookSearch']);
+    });
   }
 }

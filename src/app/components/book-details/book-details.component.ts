@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from '../../models/Book';
 import {BookDetailsService} from '../../services/book-details/book-details.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-book-details',
@@ -10,7 +11,10 @@ import {BookDetailsService} from '../../services/book-details/book-details.servi
 export class BookDetailsComponent implements OnInit {
   bookDetails: Book;
 
-  constructor(private bookDetailService: BookDetailsService) {
+  imageToShow: any;
+  isImageLoading: boolean;
+
+  constructor(private bookDetailsService: BookDetailsService, public domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -18,7 +22,27 @@ export class BookDetailsComponent implements OnInit {
   }
 
   loadBookDetails() {
-    this.bookDetails = this.bookDetailService.bookDetails;
+    this.bookDetails = this.bookDetailsService.bookDetails;
+    this.isImageLoading = true;
+
+    this.bookDetailsService.loadImage(this.bookDetails.imageName).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+
+  createImageFromBlob(image: Blob) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }

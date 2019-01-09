@@ -1,14 +1,15 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {CdkTableModule} from '@angular/cdk/table';
-import { BookSearchComponent } from './components/book-search/book-search.component';
-import { MatAutocompleteModule,
+import {BookSearchComponent} from './components/book-search/book-search.component';
+import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
@@ -38,11 +39,14 @@ import { MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatStepperModule } from '@angular/material';
-import { BookDetailsComponent } from './components/book-details/book-details.component';
-import { AddBookComponent } from './components/add-book/add-book.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ShowDetailsComponentComponent } from './components/add-book/show-details-component/show-details-component.component';
+  MatStepperModule
+} from '@angular/material';
+import {BookDetailsComponent} from './components/book-details/book-details.component';
+import {AddBookComponent} from './components/add-book/add-book.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {ShowDetailsComponentComponent} from './components/add-book/show-details-component/show-details-component.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
@@ -90,10 +94,22 @@ import { ShowDetailsComponentComponent } from './components/add-book/show-detail
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }

@@ -15,10 +15,15 @@
 
 h1.con-app-name {
   margin-left: 8px;
+  color: rgba(102,51,35,0.86);
 }
 
 .sidenav-container {
   flex: 1;
+}
+
+.fill-middle {
+  flex: 1 1 auto;
 }
 
 .con-is-mobile .sidenav-container {

@@ -10,7 +10,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   mobileQuery: MediaQueryList;
-  checked = true;
+  checked = false;
 
   private _mobileQueryListener: () => void;
 
@@ -19,8 +19,8 @@ export class AppComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
-    translateService.setDefaultLang('sl');
-    translateService.use('sl');
+    translateService.setDefaultLang('en');
+    translateService.use('en');
   }
 
   changed() {

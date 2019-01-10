@@ -9,7 +9,7 @@
                       (change)="changed()"> {{'Main_Page.Change_Lan' | translate}} </mat-slide-toggle>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" [style.background]="'url(../assets/background.jpg)'">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
                  fixedTopGap="56" style="width: 180px">
       <mat-nav-list>
@@ -18,7 +18,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content style="padding-bottom: 30px; linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" [style.background]="'url(../assets/background.jpg)'">
+    <mat-sidenav-content style="padding-bottom: 30px; linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))" >
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -1,11 +1,14 @@
-<div style="max-width: 80vw; min-width: 50vw; max-height: 35vw">
+<div style="max-width: 80vw; min-width: 50vw; max-height: 50vw">
   <div class="row" style="margin-left: 1%">
-    <mat-card-title style="font-family: Artifika-Regular">{{bookDetails.bookTitle}}</mat-card-title>
+    <mat-card-title>{{bookDetails.bookTitle}}</mat-card-title>
   </div>
   <div class="row">
     <div class="col-md-6">
       <mat-card>
-        <img mat-card-image [src]="domSanitizer.bypassSecurityTrustUrl(imageToShow)" style="margin-bottom: 5%" *ngIf="!isImageLoading">
+        <img *ngIf="!isImageLoading"
+             mat-card-image
+             [src]="domSanitizer.bypassSecurityTrustUrl(imageToShow)"
+             style="margin-bottom: 5%">
         <mat-card-content style="text-align: center">
           <p>
             {{bookDetails.bookTitle}}.jpg

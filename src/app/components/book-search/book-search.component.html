@@ -1,9 +1,14 @@
 <mat-card class="mat-elevation-z8" style="margin: 3vw 12vw;">
   <div class="mat-data-table">
     <div class="row mat-field-allign">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-      </mat-form-field>
+      <mat-label style="display: flex; align-items: center">
+        <mat-icon>search</mat-icon>
+        <mat-form-field>
+          <input matInput
+                 (keyup)="applyFilter($event.target.value)"
+                 placeholder="Search">
+        </mat-form-field>
+      </mat-label>
     </div>
     <table class="mat-table-allignment" mat-table #table [dataSource]="dataSource" aria-label="Elements">
       <ng-container matColumnDef="bookId">

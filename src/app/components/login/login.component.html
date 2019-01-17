@@ -1,0 +1,38 @@
+<mat-card class="mat-elevation-z8" style="width: 34vw">
+  <mat-toolbar color="primary" style="border-radius: 5px">
+    <span class="fill-middle"></span>
+    <span class="title-page">Login</span>
+    <span class="fill-middle"></span>
+  </mat-toolbar>
+  <mat-card-content style="padding-top: 20px">
+    <form [formGroup]="loginForm">
+      <table cellspacing="0" align="center">
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="text"
+                     matInput
+                     placeholder="Username"
+                     formControlName="userName">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="password"
+                     matInput
+                     placeholder="Password"
+                     formControlName="password">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div style="text-align: center; padding-bottom: 20px;">
+      <button mat-raised-button (click)="login()" color="primary" (keyup)="onRowAction($event)">Login</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

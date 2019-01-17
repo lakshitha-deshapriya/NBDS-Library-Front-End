@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
-import {BookSearchService} from '../../services/book-search/book-search.service';
+import {BookSearchService} from '../../services/book-search.service';
 import {Book} from '../../models/Book';
-import {BookDetailsService} from '../../services/book-details/book-details.service';
+import {BookDetailsService} from '../../services/book-details.service';
 import {BookDetailsComponent} from '../book-details/book-details.component';
 
 @Component({

@@ -1,0 +1,8 @@
+.fill-middle {
+  flex: 1 1 auto;
+}
+
+.title-page {
+  color: rgba(107, 120, 141, 0.87);
+  font-size: 150%;
+}

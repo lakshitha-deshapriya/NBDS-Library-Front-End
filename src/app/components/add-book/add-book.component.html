@@ -1,22 +1,31 @@
 <mat-card class="mat-elevation-z8" style="margin: 3vw 12vw;">
   <h4 style="text-align: center; color: rgba(107,120,141,0.87);">{{'Add_Book.Form_Title'| translate}}</h4>
   <mat-divider></mat-divider>
-  <form [formGroup]="addBook" style="padding-top: 1vw">
+  <form [formGroup]="addBook" style="padding-top: 1vw; margin-left: 1vw; margin-right: 1vw;">
     <mat-grid-list cols="10">
       <mat-grid-tile [colspan]=4>
         <mat-form-field style="width: 100%; padding-right: 2vw;">
-          <input type="text" matInput formControlName="bookTitle" placeholder="{{'Add_Book.Book_Name'|translate}}">
+          <input type="text"
+                 matInput
+                 formControlName="bookTitle"
+                 placeholder="{{'Add_Book.Book_Name'|translate}}">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=3>
         <mat-form-field style="width: 100%; padding-right: 2vw">
-          <input type="text" matInput formControlName="author" placeholder="{{'Add_Book.Author'|translate}}">
+          <input type="text"
+                 matInput
+                 formControlName="author"
+                 placeholder="{{'Add_Book.Author'|translate}}">
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=3>
         <mat-form-field style="width: 100%;">
-          <input type="text" placeholder="{{'Add_Book.Category'|translate}}" aria-label="Number" matInput
+          <input type="text"
+                 matInput
                  formControlName="category"
+                 placeholder="{{'Add_Book.Category'|translate}}"
+                 aria-label="Number"
                  [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
@@ -27,17 +36,25 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]=6>
         <mat-form-field style="width: 60%;  padding-right: 3%">
-          <input type="text" matInput formControlName="publisher" placeholder="{{'Add_Book.Publisher'|translate}}">
+          <input type="text"
+                 matInput
+                 formControlName="publisher"
+                 placeholder="{{'Add_Book.Publisher'|translate}}">
         </mat-form-field>
         <mat-form-field style="width: 40%; padding-right: 3%">
-          <input matInput [matDatepicker]="picker1" placeholder="{{'Add_Book.Published_Date'|translate}}" formControlName="publishedDate">
+          <input matInput
+                 [matDatepicker]="picker1"
+                 formControlName="publishedDate"
+                 placeholder="{{'Add_Book.Published_Date'|translate}}">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker1></mat-datepicker>
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=4 [rowspan]=5>
         <mat-card *ngIf="imageAdded" style="position: inherit; top: 0px">
-          <img mat-card-image [src]=imageSrc style="padding: 1vw; max-width: 25vw;">
+          <img mat-card-image
+               [src]=imageSrc
+               style="padding: 1vw; max-width: 25vw;">
           <mat-card-content style="text-align: center">
             <p>
               {{imageName}}
@@ -47,17 +64,26 @@
       </mat-grid-tile>
       <mat-grid-tile [colspan]=6>
         <mat-form-field style="width: 100%; height: 100%; padding-right: 3%;">
-          <textarea matInput formControlName="description" placeholder="{{'Add_Book.Description'|translate}}"></textarea>
+          <textarea matInput
+                    formControlName="description"
+                    placeholder="{{'Add_Book.Description'|translate}}"></textarea>
         </mat-form-field>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=2>
         <input style="display: none" type="file" (change)="onImageSelect($event)" #imageInput>
-        <button mat-raised-button (click)="imageInput.click()" color="primary" style="position: inherit; left:0px;">
+        <button mat-raised-button
+                (click)="imageInput.click()"
+                color="primary"
+                style="position: inherit; left:0px;">
           Select Image
         </button>
       </mat-grid-tile>
       <mat-grid-tile [colspan]=2>
-        <button mat-raised-button (click)="onSave()" color="primary" style="position: inherit; left:0px;">Save Book
+        <button mat-raised-button
+                (click)="onSave()"
+                color="primary"
+                style="position: inherit; left:0px;">
+          Save Book
         </button>
       </mat-grid-tile>
     </mat-grid-list>

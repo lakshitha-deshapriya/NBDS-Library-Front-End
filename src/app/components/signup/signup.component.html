@@ -1,0 +1,61 @@
+<mat-card class="mat-elevation-z8" style="width: 34vw">
+  <mat-toolbar color="primary" style="border-radius: 5px">
+    <span class="fill-middle"></span>
+    <span style="color: rgba(107,120,141,0.87); font-size: 150%;">SignUp</span>
+    <span class="fill-middle"></span>
+  </mat-toolbar>
+  <mat-card-content style="padding-top: 20px">
+    <form [formGroup]="signUpForm">
+      <table cellspacing="0" align="center">
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="text"
+                     matInput
+                     placeholder="Name"
+                     formControlName="name">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="text"
+                     matInput
+                     placeholder="User Name"
+                     formControlName="username">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="email"
+                     matInput
+                     placeholder="Email"
+                     formControlName="email"
+                     (focus)="setEmailFocus(true)"
+                     (blur)="setEmailFocus(false)">
+            </mat-form-field>
+            <div *ngIf="!signUpForm.get('email').valid && !emailFocused" style="color: orangered">Enter a valid email address</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field style="width: 30vw">
+              <input type="password"
+                     matInput
+                     placeholder="Password"
+                     formControlName="password">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <div style="text-align: center; padding-bottom: 20px;">
+      <button mat-raised-button (click)="register()" color="primary">SignUp</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

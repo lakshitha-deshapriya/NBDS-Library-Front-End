@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {Book} from '../../models/Book';
-import {BookDetailsService} from '../../services/book-details.service';
+import { Component, OnInit } from '@angular/core';
+import { Book } from 'src/app/models/Book';
+import { BookAddService } from 'src/app/services/book-add.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {BookDetailsService} from '../../../services/book-details.service';
 
 @Component({
-  selector: 'app-book-details',
-  templateUrl: './book-details.component.html',
-  styleUrls: ['./book-details.component.css']
+  selector: 'app-show-details-component',
+  templateUrl: './show-details.component.html',
+  styleUrls: ['./show-details.component.css']
 })
-export class BookDetailsComponent implements OnInit {
+export class ShowDetailsComponent implements OnInit {
   bookDetails: Book;
 
   imageToShow: any;
   isImageLoading: boolean;
 
-  constructor(private bookDetailsService: BookDetailsService, public domSanitizer: DomSanitizer) {
+  constructor(private bookAddService: BookAddService, public domSanitizer: DomSanitizer, private bookDetailsService: BookDetailsService) {
   }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class BookDetailsComponent implements OnInit {
   }
 
   loadBookDetails() {
-    this.bookDetails = this.bookDetailsService.bookDetails;
+    this.bookDetails = this.bookAddService.book;
     this.isImageLoading = true;
 
     this.bookDetailsService.loadImage(this.bookDetails.imageName).subscribe(data => {
@@ -44,5 +45,4 @@ export class BookDetailsComponent implements OnInit {
       reader.readAsDataURL(image);
     }
   }
-
 }

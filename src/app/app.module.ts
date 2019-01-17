@@ -44,9 +44,12 @@ import {
 import {BookDetailsComponent} from './components/book-details/book-details.component';
 import {AddBookComponent} from './components/add-book/add-book.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {ShowDetailsComponentComponent} from './components/add-book/show-details-component/show-details-component.component';
+import {ShowDetailsComponent} from './components/add-book/show-details-component/show-details.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {LoginComponent} from './components/login/login.component';
+import {SignupComponent} from './components/signup/signup.component';
+import {httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     BookDetailsComponent,
     AddBookComponent,
     PageNotFoundComponent,
-    ShowDetailsComponentComponent
+    ShowDetailsComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +109,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
       }
     })
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

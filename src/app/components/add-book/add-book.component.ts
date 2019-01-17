@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {BookSearchService} from '../../services/book-search/book-search.service';
+import {BookSearchService} from '../../services/book-search.service';
 import {Book} from '../../models/Book';
-import { BookAddService } from 'src/app/services/book-add/book-add.service';
+import { BookAddService } from 'src/app/services/book-add.service';
 import { Router } from '@angular/router';
-import { BookDetailsService } from 'src/app/services/book-details/book-details.service';
+import { BookDetailsService } from 'src/app/services/book-details.service';
 import {BookDetailsComponent} from '../book-details/book-details.component';
 import {MatDialog} from '@angular/material';
 

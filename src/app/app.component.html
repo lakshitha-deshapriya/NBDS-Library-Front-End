@@ -13,23 +13,23 @@
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <button *ngIf = "!loggedIn" mat-menu-item (click)="openLogin()">
         <mat-icon>locked</mat-icon>
-        <span>Login</span>
+        <span>{{'Main_Page.Login' | translate}}</span>
       </button>
       <button *ngIf="loggedIn" mat-menu-item (click)="logOut()">
         <mat-icon>lock_open</mat-icon>
-        <span>Logout</span>
+        <span>{{'Main_Page.Logout' | translate}}</span>
       </button>
       <button mat-menu-item (click)="openSignUp()">
         <mat-icon>touch_app</mat-icon>
-        <span>Register</span>
+        <span>{{'Main_Page.SignUp' | translate}}</span>
       </button>
     </mat-menu>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" [style.background]="'url(../assets/background.jpg)'">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-                 fixedTopGap="56" style="width: 180px">
-      <mat-nav-list>
+                 fixedTopGap="56" class="mat-elevation-z8" style="width: 180px; background: #f8f8f88a;">
+      <mat-nav-list style="background: #f8f8f88a">
         <a mat-list-item routerLink="/" routerLinkActive="active">{{'Main_Page.Book_List' | translate}}</a>
         <a *ngIf="loggedIn" mat-list-item routerLink="/addBook" routerLinkActive="active">{{'Main_Page.Add_Book' | translate}}</a>
         <a *ngIf="!loggedIn" mat-list-item routerLinkActive="active">{{'Main_Page.Add_Book' | translate}}</a>
@@ -40,8 +40,8 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  <footer class="fixed-bottom footer">
-    <span class="text-muted">Copyright &copy; 2019.</span>
+  <footer class="fixed-bottom footer" style="background: #f8f8f88a">
+    <span style="color: black">Copyright &copy; 2019.</span>
   </footer>
 </div>
 

@@ -3,7 +3,10 @@
     "Change_Lan": "සිංහල",
     "Title": "නෘග බෝධි පාක්ෂික ධර්ම සංවිධාන පුස්තකාලය",
     "Book_List": "පොත් සෙවීම",
-    "Add_Book" : "පොත් ඇතුලු කිරීම"
+    "Add_Book" : "පොත් ඇතුලු කිරීම",
+    "Login" : "අතුලු වීම",
+    "Logout" : "ඉවත් වීම",
+    "SignUp" : "ලියාපදිංචි වීම"
   },
   "Add_Book" : {
     "Form_Title" : "පොත ඇතුලු කරන්න",
@@ -13,5 +16,19 @@
     "Publisher" : "පොත් ප්\u200Dරකාශක",
     "Published_Date" : "ප්\u200Dරකාශිත දිනය",
     "Description" : "පොතේ සාරාංශය"
+  },
+  "Book_Details" : {
+    "Author" : "කතෘ",
+    "Published_Date" : "ප්\u200Dරකාශිත දිනය",
+    "Category" : "පොත් ඛාණ්ඩය",
+    "Publisher" : "පොත් ප්\u200Dරකාශක",
+    "Description" : "පොතේ සාරාංශය",
+    "Last_Taken": "අවසන් වරට ගෙනගිය දිනය",
+    "Taken_By": "අවසන් ගෙන යාම"
+  },
+  "Login" : {
+    "Login" : "අතුලු වීම",
+    "Username" : "පරිශීලක නාමය",
+    "Password" : "රහස් පදය"
   }
 }

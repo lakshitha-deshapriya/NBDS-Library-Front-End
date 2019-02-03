@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
     } else {
       this.translateService.use('en');
     }
-    console.log(this.checked);
   }
 
   openLogin() {

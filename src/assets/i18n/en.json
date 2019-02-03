@@ -3,7 +3,10 @@
     "Change_Lan": "Sinhala",
     "Title": "Nugha Bodhi Pakshika Dharma Sanwidana Library",
     "Book_List" : "Book List",
-    "Add_Book" : "Add Book"
+    "Add_Book" : "Add Book",
+    "Login" : "Login",
+    "Logout" : "Logout",
+    "SignUp" : "SignUp"
   },
   "Add_Book" : {
     "Form_Title" : "Add Book",
@@ -13,5 +16,19 @@
     "Publisher" : "Publisher",
     "Published_Date" : "Published Date",
     "Description" : "Book Summary"
+  },
+  "Book_Details" : {
+    "Author" : "Author",
+    "Published_Date" : "Published Date",
+    "Category" : "Category",
+    "Publisher" : "Publisher",
+    "Description" : "Book Summary",
+    "Last_Taken": "Last Taken",
+    "Taken_By": "Taken By"
+  },
+  "Login" : {
+    "Login" : "Login",
+    "Username" : "Username",
+    "Password" : "Password"
   }
 }

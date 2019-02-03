@@ -1,5 +1,5 @@
 <mat-card class="mat-elevation-z8" style="width: 34vw">
-  <mat-toolbar color="primary" style="border-radius: 5px">
+  <mat-toolbar color="primary" style="border-radius: 5px; max-height: 6vh">
     <span class="fill-middle"></span>
     <span style="color: rgba(107,120,141,0.87); font-size: 150%;">SignUp</span>
     <span class="fill-middle"></span>
@@ -8,8 +8,9 @@
     <form [formGroup]="signUpForm">
       <table cellspacing="0" align="center">
         <tr>
-          <td>
-            <mat-form-field style="width: 30vw">
+          <td style="display: flex; align-items: center">
+            <mat-icon style="margin-right: 1vw">person</mat-icon>
+            <mat-form-field style="width: 27vw">
               <input type="text"
                      matInput
                      placeholder="Name"
@@ -18,8 +19,9 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <mat-form-field style="width: 30vw">
+          <td style="display: flex; align-items: center">
+            <mat-icon style="margin-right: 1vw">account_circle</mat-icon>
+            <mat-form-field style="width: 27vw">
               <input type="text"
                      matInput
                      placeholder="User Name"
@@ -28,8 +30,9 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <mat-form-field style="width: 30vw">
+          <td style="display: flex; align-items: center">
+            <mat-icon style="margin-right: 1vw">email</mat-icon>
+            <mat-form-field style="width: 27vw;" >
               <input type="email"
                      matInput
                      placeholder="Email"
@@ -41,8 +44,9 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <mat-form-field style="width: 30vw">
+          <td style="display: flex; align-items: center">
+            <mat-icon style="margin-right: 1vw">vpn_key</mat-icon>
+            <mat-form-field style="width: 27vw">
               <input type="password"
                      matInput
                      placeholder="Password"
@@ -55,7 +59,7 @@
   </mat-card-content>
   <mat-card-actions>
     <div style="text-align: center; padding-bottom: 20px;">
-      <button mat-raised-button (click)="register()" color="primary">SignUp</button>
+      <button mat-raised-button (click)="register()" color="primary" [disabled]="!signUpForm.valid">SignUp</button>
     </div>
   </mat-card-actions>
 </mat-card>

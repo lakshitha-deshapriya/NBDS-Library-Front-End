@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthLoginInfo} from '../../models/login-info';
 import {AuthService} from '../../services/auth.service';
@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   private loginInfo: AuthLoginInfo;
 
+  @ViewChild('user') userInput: ElementRef;
+
   constructor(private authService: AuthService, private msgService: ErrorMsgService,
               public dialogRef: MatDialogRef<LoginComponent>, public snackBar: MatSnackBar) {
   }
@@ -32,15 +34,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onRowAction(event: KeyboardEvent) {
-    if (event.keyCode === 13) {
-      this.login();
-    }
-  }
-
   @HostListener('document:keyup', ['$event'])
   handleDeleteKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    if (this.loginForm.valid && event.key === 'Enter') {
       this.login();
     }
   }
@@ -59,6 +55,7 @@ export class LoginComponent implements OnInit {
       error => {
         this.errorMessage = error.error;
         this.authService.setLogInStatus(false);
+        this.userInput.nativeElement.focus();
         this.openSnackBar(this.errorMessage, 'Login');
         this.loginForm.reset();
       }

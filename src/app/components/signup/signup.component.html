@@ -1,7 +1,7 @@
 <mat-card class="mat-elevation-z8" style="width: 34vw">
   <mat-toolbar color="primary" style="border-radius: 5px; max-height: 6vh">
     <span class="fill-middle"></span>
-    <span style="color: rgba(107,120,141,0.87); font-size: 150%;">SignUp</span>
+    <span style="color: rgba(107,120,141,0.87); font-size: 150%;">{{'Sign_Up.SignUp'|translate}}</span>
     <span class="fill-middle"></span>
   </mat-toolbar>
   <mat-card-content style="padding-top: 20px">
@@ -13,7 +13,7 @@
             <mat-form-field style="width: 27vw">
               <input type="text"
                      matInput
-                     placeholder="Name"
+                     placeholder="{{'Sign_Up.Name'|translate}}"
                      formControlName="name">
             </mat-form-field>
           </td>
@@ -24,7 +24,7 @@
             <mat-form-field style="width: 27vw">
               <input type="text"
                      matInput
-                     placeholder="User Name"
+                     placeholder="{{'Sign_Up.Username'|translate}}"
                      formControlName="username">
             </mat-form-field>
           </td>
@@ -35,13 +35,15 @@
             <mat-form-field style="width: 27vw;" >
               <input type="email"
                      matInput
-                     placeholder="Email"
+                     placeholder="{{'Sign_Up.Email'|translate}}"
                      formControlName="email"
                      (focus)="setEmailFocus(true)"
                      (blur)="setEmailFocus(false)">
             </mat-form-field>
-            <div *ngIf="!signUpForm.get('email').valid && !emailFocused" style="color: orangered">Enter a valid email address</div>
           </td>
+        </tr>
+        <tr>
+          <div *ngIf="!signUpForm.get('email').valid && !emailFocused" style="color: orangered; margin-left: 3vw">{{'Sign_Up.ValidEmail'|translate}}</div>
         </tr>
         <tr>
           <td style="display: flex; align-items: center">
@@ -49,7 +51,7 @@
             <mat-form-field style="width: 27vw">
               <input type="password"
                      matInput
-                     placeholder="Password"
+                     placeholder="{{'Sign_Up.Password'|translate}}"
                      formControlName="password">
             </mat-form-field>
           </td>

@@ -9,6 +9,7 @@ import {
   MatSnackBarConfig
 } from '@angular/material';
 import {Constant} from '../../Constants/Constant';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   errorMessage = '';
+  msg1 = '';
+  msg2 = '';
   private loginInfo: AuthLoginInfo;
 
   @ViewChild('user') userInput: ElementRef;
 
   constructor(private authService: AuthService, private msgService: ErrorMsgService,
-              public dialogRef: MatDialogRef<LoginComponent>, public snackBar: MatSnackBar) {
+              public dialogRef: MatDialogRef<LoginComponent>, public snackBar: MatSnackBar, private translate: TranslateService) {
   }
 
   ngOnInit() {
@@ -45,18 +48,20 @@ export class LoginComponent implements OnInit {
     const formValues = this.loginForm.value;
     this.loginInfo = new AuthLoginInfo(formValues.userName, formValues.password);
 
+    this.translate.get('Login.Login').subscribe((text: string) => this.msg2 = text);
     this.authService.attemptAuth(this.loginInfo).subscribe(
       (user) => {
         this.authService.setLogInStatus(true);
         this.authService.user = user;
-        this.openSnackBar('Logged in Successfully!', 'Login');
+        this.translate.get('Login.LoggedIn').subscribe((text: string) => this.msg1 = text);
+        this.openSnackBar(this.msg1, this.msg2);
         this.dialogRef.close();
       },
       error => {
         this.errorMessage = error.error;
         this.authService.setLogInStatus(false);
         this.userInput.nativeElement.focus();
-        this.openSnackBar(this.errorMessage, 'Login');
+        this.openSnackBar(this.errorMessage, this.msg2);
         this.loginForm.reset();
       }
     );

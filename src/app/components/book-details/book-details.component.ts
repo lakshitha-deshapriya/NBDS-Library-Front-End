@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from '../../models/Book';
 import {BookDetailsService} from '../../services/book-details.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-book-details',
@@ -14,10 +15,13 @@ export class BookDetailsComponent implements OnInit {
   imageToShow: any;
   isImageLoading: boolean;
 
-  constructor(private bookDetailsService: BookDetailsService, public domSanitizer: DomSanitizer) {
+  constructor(private bookDetailsService: BookDetailsService,
+              public domSanitizer: DomSanitizer,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.authService.validateLogIn();
     this.loadBookDetails();
   }
 

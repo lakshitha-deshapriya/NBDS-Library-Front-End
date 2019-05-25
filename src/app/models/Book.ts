@@ -1,5 +1,6 @@
 export class Book {
   bookId: number;
+  bookCode: String;
   bookTitle: String;
   description: String;
   author: String;
@@ -10,7 +11,8 @@ export class Book {
   lastTakenDate: Date;
   imageName: string;
 
-  constructor(bookTitle, description, author, publishedDate, category, publisher, imageName) {
+  constructor(bookCode, bookTitle, description, author, publishedDate, category, publisher, imageName) {
+    this.bookCode = bookCode;
     this.bookTitle = bookTitle;
     this.description = description;
     this.author = author;

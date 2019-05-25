@@ -50,6 +50,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {LoginComponent} from './components/login/login.component';
 import {SignupComponent} from './components/signup/signup.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -109,12 +110,12 @@ import {httpInterceptorProviders} from './auth/auth-interceptor';
       }
     })
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, {provide: APP_BASE_HREF, useValue: '/nbds'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }

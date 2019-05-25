@@ -18,7 +18,7 @@ export class BookSearchComponent implements OnInit {
   bookList: Book[];
   book: Book;
 
-  displayedColumns = ['bookId', 'bookTitle', 'author', 'publishedDate', 'detailsButton'];
+  displayedColumns = ['bookCode', 'bookTitle', 'author', 'publishedDate', 'detailsButton'];
 
   constructor(private bookSearchService: BookSearchService, private bookDetailsService: BookDetailsService, public dialog: MatDialog) {
     this.getAllBooks();

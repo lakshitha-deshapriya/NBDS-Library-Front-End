@@ -8,6 +8,14 @@
     "Logout" : "ඉවත් වීම",
     "SignUp" : "ලියාපදිංචි වීම"
   },
+  "Book_Search" : {
+    "Search": "සොයන්න",
+    "Title": "පොතේ නම",
+    "Author": "කතෘ",
+    "PublishedDate": "ප්\u200Dරකාශිත දිනය",
+    "Details": "තොරතුරු",
+    "BookCode" : "කේත අංකය"
+  },
   "Add_Book" : {
     "Form_Title" : "පොත ඇතුලු කරන්න",
     "Book_Name" : "පොතේ නම",
@@ -15,7 +23,11 @@
     "Category" : "පොත් ඛාණ්ඩය",
     "Publisher" : "පොත් ප්\u200Dරකාශක",
     "Published_Date" : "ප්\u200Dරකාශිත දිනය",
-    "Description" : "පොතේ සාරාංශය"
+    "Description" : "පොතේ සාරාංශය",
+    "SelectImage" : "පොත් කවරය තෝරන්න",
+    "SaveBook" : "පොත අතුලු කරන්න",
+    "Code" : "කේත අංකය",
+    "RemoveImage" : "කවරය ඉවත් කරන්න"
   },
   "Book_Details" : {
     "Author" : "කතෘ",
@@ -29,6 +41,15 @@
   "Login" : {
     "Login" : "අතුලු වීම",
     "Username" : "පරිශීලක නාමය",
-    "Password" : "රහස් පදය"
+    "Password" : "රහස් පදය",
+    "LoggedIn" : "සාර්ථකව පිවිසුනා"
+  },
+  "Sign_Up": {
+    "SignUp": "ලියාපදිංචි වීම",
+    "Name": "නම",
+    "Username" : "පරිශීලක නාමය",
+    "Email" : "විද්\u200Dයුත් තැපැල් ලිපිනය",
+    "Password" : "රහස් පදය",
+    "ValidEmail" : "වලංගු විද්\u200Dයුත් තැපැල් ලිපිනයක් ඇතුල් කරන්න"
   }
 }

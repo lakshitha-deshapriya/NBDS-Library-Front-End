@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   {path: 'logIn', component: LoginComponent},
   {path: 'register', component: SignupComponent},
   {path: 'page-not-found', component: PageNotFoundComponent},
-  {path: '**', redirectTo: 'page-not-found'}
+  {path: '**', redirectTo: 'bookSearch'}
 ];
 
 @NgModule({

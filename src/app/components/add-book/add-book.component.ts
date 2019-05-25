@@ -4,11 +4,12 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {BookSearchService} from '../../services/book-search.service';
 import {Book} from '../../models/Book';
-import { BookAddService } from 'src/app/services/book-add.service';
-import { Router } from '@angular/router';
-import { BookDetailsService } from 'src/app/services/book-details.service';
+import {BookAddService} from 'src/app/services/book-add.service';
+import {Router} from '@angular/router';
+import {BookDetailsService} from 'src/app/services/book-details.service';
 import {BookDetailsComponent} from '../book-details/book-details.component';
 import {MatDialog} from '@angular/material';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-book',
@@ -27,18 +28,20 @@ export class AddBookComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   constructor(private bookSearchService: BookSearchService,
-    private bookAddService: BookAddService,
-    private router: Router,
-    private bookDetailsService: BookDetailsService,
-    public dialog: MatDialog
-    ) {
+              private bookAddService: BookAddService,
+              private router: Router,
+              private bookDetailsService: BookDetailsService,
+              public dialog: MatDialog,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.authService.validateLogIn();
     this.getAllCategories();
     this.addBook = new FormGroup({
       'bookTitle': new FormControl(null, Validators.required),
       'author': new FormControl(null, Validators.required),
+      'bookCode': new FormControl(null, Validators.required),
       'category': new FormControl(null, Validators.required),
       'description': new FormControl(null, Validators.required),
       'publisher': new FormControl(null, Validators.required),
@@ -88,6 +91,7 @@ export class AddBookComponent implements OnInit {
   onSave() {
     const formValues = this.addBook.value;
     this.newBook = new Book(
+      formValues.bookCode,
       formValues.bookTitle,
       formValues.description,
       formValues.author,
@@ -109,5 +113,10 @@ export class AddBookComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigate(['/bookSearch']);
     });
+  }
+
+  clearImage() {
+    this.uploadedImage = null;
+    this.imageAdded = false;
   }
 }

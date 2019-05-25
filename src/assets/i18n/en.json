@@ -8,6 +8,14 @@
     "Logout" : "Logout",
     "SignUp" : "SignUp"
   },
+  "Book_Search" : {
+    "Search": "Search",
+    "Title": "Book Name",
+    "Author": "Author",
+    "PublishedDate": "Published Date",
+    "Details": "Details",
+    "BookCode" : "Book Code"
+  },
   "Add_Book" : {
     "Form_Title" : "Add Book",
     "Book_Name" : "Book Name",
@@ -15,7 +23,11 @@
     "Category" : "Category",
     "Publisher" : "Publisher",
     "Published_Date" : "Published Date",
-    "Description" : "Book Summary"
+    "Description" : "Book Summary",
+    "SelectImage" : "Select Image",
+    "SaveBook" : "Save Book",
+    "Code" : "Book Code",
+    "RemoveImage" : "Remove Image"
   },
   "Book_Details" : {
     "Author" : "Author",
@@ -29,6 +41,15 @@
   "Login" : {
     "Login" : "Login",
     "Username" : "Username",
-    "Password" : "Password"
+    "Password" : "Password",
+    "LoggedIn" : "Logged in Successfully!"
+  },
+  "Sign_Up": {
+    "SignUp": "SignUp",
+    "Name": "Name",
+    "Username" : "Username",
+    "Email" : "Email",
+    "Password" : "Password",
+    "ValidEmail" : "Enter a valid email address"
   }
 }

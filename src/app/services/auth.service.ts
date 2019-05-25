@@ -6,6 +6,7 @@ import {JwtResponse} from '../models/jwt-response';
 import {Observable} from 'rxjs';
 import {SignUpInfo} from '../models/signup-info';
 import {User} from '../models/User';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,7 +21,7 @@ export class AuthService {
   isLoggedIn = false;
   user: User;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   attemptAuth(credentials: AuthLoginInfo): Observable<User> {
@@ -33,5 +34,11 @@ export class AuthService {
 
   setLogInStatus( status: boolean ) {
     this.isLoggedIn = status;
+  }
+
+  validateLogIn(){
+    if (!this.isLoggedIn) {
+      this.router.navigate(['/']);
+    }
   }
 }

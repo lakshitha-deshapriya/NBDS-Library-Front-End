@@ -14,7 +14,8 @@
     "Author": "Author",
     "PublishedDate": "Published Date",
     "Details": "Details",
-    "BookCode" : "Book Code"
+    "BookCode" : "Book Code",
+    "Edit" : "Edit"
   },
   "Add_Book" : {
     "Form_Title" : "Add Book",
@@ -50,6 +51,7 @@
     "Username" : "Username",
     "Email" : "Email",
     "Password" : "Password",
-    "ValidEmail" : "Enter a valid email address"
+    "ValidEmail" : "Enter a valid email address",
+    "SignUpSuccess" : "Signed up Successfully"
   }
 }

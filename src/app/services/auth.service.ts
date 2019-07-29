@@ -36,7 +36,7 @@ export class AuthService {
     this.isLoggedIn = status;
   }
 
-  validateLogIn(){
+  validateLogIn() {
     if (!this.isLoggedIn) {
       this.router.navigate(['/']);
     }

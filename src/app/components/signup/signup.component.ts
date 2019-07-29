@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SignUpInfo} from '../../models/signup-info';
 import {AuthService} from '../../services/auth.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialogRef, MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
+import {Constant} from '../../Constants/Constant';
 
 @Component({
   selector: 'app-signup',
@@ -16,9 +18,11 @@ export class SignupComponent implements OnInit {
   signUpInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
-  errorMessage = '';
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) {
+  constructor(private authService: AuthService,
+              private snackBar: MatSnackBar,
+              public dialogRef: MatDialogRef<SignupComponent>,
+              private translator: TranslateService) {
   }
 
   ngOnInit() {
@@ -38,16 +42,22 @@ export class SignupComponent implements OnInit {
       formValues.email,
       formValues.password);
 
+    let action = '';
+    let message = '';
+    this.translator.get('Sign_up.SignUp').subscribe((text: string) => action = text);
     this.authService.register(this.signUpInfo).subscribe(
       () => {
-        this.openSnackBar(this.errorMessage, '');
+        this.translator.get('Sign_Up.SignUpSuccess').subscribe((text: string) => message = text);
+        this.openSnackBar(message, action);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.dialogRef.close();
       },
       error => {
-        this.errorMessage = error.error.message;
-        this.openSnackBar(this.errorMessage, '');
+        message = error.error.message;
+        this.openSnackBar(message, action);
         this.isSignUpFailed = true;
+        this.signUpForm.reset();
       }
     );
   }
@@ -57,8 +67,10 @@ export class SignupComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
+    const config = new MatSnackBarConfig();
+    config.verticalPosition = Constant.verticalPosition;
+    config.horizontalPosition = Constant.horizontalPosition;
+    config.duration = Constant.autoHide;
+    this.snackBar.open(message, action, config);
   }
 }

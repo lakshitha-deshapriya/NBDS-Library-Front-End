@@ -18,7 +18,7 @@ export class BookSearchComponent implements OnInit {
   bookList: Book[];
   book: Book;
 
-  displayedColumns = ['bookCode', 'bookTitle', 'author', 'publishedDate', 'detailsButton'];
+  displayedColumns = ['bookCode', 'bookTitle', 'author', 'publishedDate', 'detailsButton', 'editButton'];
 
   constructor(private bookSearchService: BookSearchService, private bookDetailsService: BookDetailsService, public dialog: MatDialog) {
     this.getAllBooks();
@@ -48,6 +48,10 @@ export class BookSearchComponent implements OnInit {
     this.book = this.bookList.find(bk => bk.bookId === bookId);
     this.bookDetailsService.setBookDetail(this.book);
     this.openBookDetailsDialog();
+  }
+
+  editDetails(bookId: number) {
+
   }
 
   openBookDetailsDialog() {

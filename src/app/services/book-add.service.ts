@@ -26,20 +26,30 @@ export class BookAddService {
           this.http.post(this.baseURL + 'books', this.book).subscribe(
             (savedBook: Book) => {
               this.book = savedBook;
+              return true;
             },
-            (error => console.log(error))
+            (error => {
+              console.log(error);
+              return false;
+            })
           );
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log(error);
+          return false;
+        }
       );
     } else {
       this.http.post(this.baseURL + 'books', this.book).subscribe(
         (savedBook: Book) => {
           this.book = savedBook;
+          return true;
         },
-        (error => console.log(error))
+        (error => {
+          console.log(error);
+          return false;
+        })
       );
     }
-
   }
 }

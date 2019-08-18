@@ -75,8 +75,7 @@ export class AppComponent implements OnInit {
   }
 
   activateAddBook() {
-    if (this.loggedIn)
-    {
+    if (this.loggedIn) {
       return 'active';
     }
     return '';

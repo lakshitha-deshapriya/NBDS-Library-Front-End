@@ -39,6 +39,18 @@
     "Last_Taken": "අවසන් වරට ගෙනගිය දිනය",
     "Taken_By": "අවසන් ගෙන යාම"
   },
+  "Book_Edit" : {
+    "Book_Name" : "පොතේ නම",
+    "Author" : "කතෘ",
+    "Category" : "පොත් ඛාණ්ඩය",
+    "Publisher" : "පොත් ප්\u200Dරකාශක",
+    "Published_Date" : "ප්\u200Dරකාශිත දිනය",
+    "Description" : "පොතේ සාරාංශය",
+    "SelectImage" : "පොත් කවරය තෝරන්න",
+    "SaveBook" : "පොත අතුලු කරන්න",
+    "Code" : "කේත අංකය",
+    "RemoveImage" : "කවරය ඉවත් කරන්න"
+  },
   "Login" : {
     "Login" : "අතුලු වීම",
     "Username" : "පරිශීලක නාමය",

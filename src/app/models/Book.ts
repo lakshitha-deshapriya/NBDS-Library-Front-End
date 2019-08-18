@@ -5,6 +5,7 @@ export class Book {
   description: String;
   author: String;
   publishedDate: Date;
+  publishedDateStr: String;
   category: String;
   publisher: String;
   lastTakenPerson: String;

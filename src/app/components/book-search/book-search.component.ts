@@ -4,6 +4,10 @@ import {BookSearchService} from '../../services/book-search.service';
 import {Book} from '../../models/Book';
 import {BookDetailsService} from '../../services/book-details.service';
 import {BookDetailsComponent} from '../book-details/book-details.component';
+import {EditBookComponent} from '../edit-book/edit-book.component';
+import {BookEditService} from '../../services/book-edit.service';
+import {Utils} from '../../utils/Utils';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-book-search',
@@ -20,7 +24,11 @@ export class BookSearchComponent implements OnInit {
 
   displayedColumns = ['bookCode', 'bookTitle', 'author', 'publishedDate', 'detailsButton', 'editButton'];
 
-  constructor(private bookSearchService: BookSearchService, private bookDetailsService: BookDetailsService, public dialog: MatDialog) {
+  constructor(private bookSearchService: BookSearchService,
+              private bookDetailsService: BookDetailsService,
+              private bookEditService: BookEditService,
+              private authService: AuthService,
+              public dialog: MatDialog) {
     this.getAllBooks();
   }
 
@@ -31,11 +39,20 @@ export class BookSearchComponent implements OnInit {
   getAllBooks() {
     this.bookSearchService.getAllBooks().subscribe(
       (books: Book[]) => {
+        books = this.mapData(books);
         this.bookList = books;
         this.dataSource = new MatTableDataSource<Book>(this.bookList);
       },
       (error) => console.log(error)
     );
+  }
+
+  private mapData(books: Book[]) {
+    books.forEach(function (book) {
+      book.publishedDate = new Date(book.publishedDate);
+      book.publishedDateStr = Utils.getCustomDate(book.publishedDate);
+    });
+    return books;
   }
 
   applyFilter(filterValue: string) {
@@ -51,7 +68,12 @@ export class BookSearchComponent implements OnInit {
   }
 
   editDetails(bookId: number) {
+    this.bookEditService.book = this.bookList.find(bk => bk.bookId === bookId);
+    const dialogRef = this.dialog.open(EditBookComponent);
 
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllBooks();
+    });
   }
 
   openBookDetailsDialog() {
@@ -60,5 +82,9 @@ export class BookSearchComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.getAllBooks();
     });
+  }
+
+  isLoggedInUser() {
+    return this.authService.isLoggedIn;
   }
 }

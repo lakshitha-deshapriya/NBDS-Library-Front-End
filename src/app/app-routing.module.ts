@@ -7,6 +7,7 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import { ShowDetailsComponent } from './components/add-book/show-details-component/show-details.component';
 import {LoginComponent} from './components/login/login.component';
 import {SignupComponent} from './components/signup/signup.component';
+import {EditBookComponent} from './components/edit-book/edit-book.component';
 
 
 const appRoutes: Routes = [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   {path: 'showDetails', component: ShowDetailsComponent},
   {path: 'logIn', component: LoginComponent},
   {path: 'register', component: SignupComponent},
+  {path: 'editBook', component: EditBookComponent},
   {path: 'page-not-found', component: PageNotFoundComponent},
   {path: '**', redirectTo: 'bookSearch'}
 ];

@@ -51,7 +51,7 @@ import {LoginComponent} from './components/login/login.component';
 import {SignupComponent} from './components/signup/signup.component';
 import {httpInterceptorProviders} from './auth/auth-interceptor';
 import {APP_BASE_HREF} from '@angular/common';
-import { EditBookComponent } from './components/edit-book/edit-book.component';
+import {EditBookComponent} from './components/edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +112,7 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
       }
     })
   ],
-  providers: [httpInterceptorProviders, {provide: APP_BASE_HREF, useValue: '/nbds'}],
+  providers: [httpInterceptorProviders/*, {provide: APP_BASE_HREF, useValue: '/nbds'}*/],
   bootstrap: [AppComponent]
 })
 export class AppModule {

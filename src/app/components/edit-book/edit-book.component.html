@@ -1,3 +1,105 @@
-<p>
-  edit-book works!
-</p>
+<div style="max-width: 80vw; min-width: 50vw; max-height: 38vw;">
+  <div class="row" style="margin-left: 1%">
+    <mat-card-title>{{book.bookCode}} - {{book.bookTitle}}</mat-card-title>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-card style="margin-bottom: 20px">
+        <img *ngIf="!isImageLoading"
+             mat-card-image
+             [src]="domSanitizer.bypassSecurityTrustUrl(imageToShow)"
+             style="margin-bottom: 5%">
+        <mat-card-content style="text-align: center">
+          <p>
+            {{book.bookTitle}}.jpg
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <form [formGroup]="editBook" style="padding-top: 1vw; margin-left: 1vw; margin-right: 1vw;">
+        <mat-form-field style="width: 100%">
+          <input type="text"
+                 matInput
+                 formControlName="bookTitle"
+                 value="{{book.bookTitle}}"
+                 placeholder="{{'Book_Edit.Book_Name'|translate}}">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input type="text"
+                 matInput
+                 formControlName="author"
+                 value="{{book.author}}"
+                 placeholder="{{'Book_Edit.Author'|translate}}">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input type="text"
+                 matInput
+                 formControlName="bookCode"
+                 value="{{book.bookCode}}"
+                 placeholder="{{'Book_Edit.Code'|translate}}">
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <input type="text"
+                 matInput
+                 formControlName="category"
+                 value="{{book.category}}"
+                 placeholder="{{'Book_Edit.Category'|translate}}"
+                 aria-label="Number"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input type="text"
+                 matInput
+                 formControlName="publisher"
+                 value="{{book.publisher}}"
+                 placeholder="{{'Book_Edit.Publisher'|translate}}">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input matInput
+                 [matDatepicker]="picker1"
+                 formControlName="publishedDate"
+                 placeholder="{{'Book_Edit.Published_Date'|translate}}">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker [startAt]="book.publishedDate" touchUi #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <textarea matInput
+                    formControlName="description"
+                    value="{{book.description}}"
+                    placeholder="{{'Book_Edit.Description'|translate}}"></textarea>
+        </mat-form-field>
+        <mat-grid-list cols="3">
+          <mat-grid-tile [colspan]=1>
+            <input style="display: none" type="file" (change)="onImageSelect($event)" #imageInput>
+            <button mat-raised-button
+                    (click)="imageInput.click()"
+                    color="primary">
+              {{'Book_Edit.SelectImage'|translate}}
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]=1>
+            <button mat-raised-button
+                    (click)="onSave()"
+                    color="primary"
+                    [disabled]="!editBook.valid">
+              {{'Book_Edit.SaveBook'|translate}}
+            </button>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]=1>
+            <button mat-raised-button
+                    (click)="clearImage()"
+                    color="primary">
+              {{'Book_Edit.RemoveImage'|translate}}
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </div>
+  </div>
+</div>

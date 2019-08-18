@@ -8,8 +8,9 @@ import {BookAddService} from 'src/app/services/book-add.service';
 import {Router} from '@angular/router';
 import {BookDetailsService} from 'src/app/services/book-details.service';
 import {BookDetailsComponent} from '../book-details/book-details.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar, MatSnackBarConfig} from '@angular/material';
 import {AuthService} from '../../services/auth.service';
+import {Constant} from '../../Constants/Constant';
 
 @Component({
   selector: 'app-add-book',
@@ -32,7 +33,8 @@ export class AddBookComponent implements OnInit {
               private router: Router,
               private bookDetailsService: BookDetailsService,
               public dialog: MatDialog,
-              private authService: AuthService) {
+              private authService: AuthService,
+              public snackBar: MatSnackBar ) {
   }
 
   ngOnInit() {
@@ -90,6 +92,7 @@ export class AddBookComponent implements OnInit {
 
   onSave() {
     const formValues = this.addBook.value;
+    this.imageName = this.imageAdded ? this.imageName : 'TBA.jpg';
     this.newBook = new Book(
       formValues.bookCode,
       formValues.bookTitle,
@@ -100,11 +103,16 @@ export class AddBookComponent implements OnInit {
       formValues.publisher,
       this.imageName
     );
+    this.newBook.bookId = -1;
 
-    this.bookAddService.saveBook(this.uploadedImage, this.newBook);
+    const success = this.bookAddService.saveBook(this.uploadedImage, this.newBook);
 
-    this.bookDetailsService.setBookDetail(this.newBook);
-    this.openBookDetailsDialog();
+    if (success) {
+      this.bookDetailsService.setBookDetail(this.newBook);
+      this.openBookDetailsDialog();
+    } else {
+      this.openSnackBar( 'Saving Book failed', 'Save' );
+    }
   }
 
   openBookDetailsDialog() {
@@ -118,5 +126,13 @@ export class AddBookComponent implements OnInit {
   clearImage() {
     this.uploadedImage = null;
     this.imageAdded = false;
+  }
+
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.verticalPosition = Constant.verticalPosition;
+    config.horizontalPosition = Constant.horizontalPosition;
+    config.duration = Constant.autoHide;
+    this.snackBar.open(message, action, config);
   }
 }

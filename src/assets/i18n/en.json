@@ -39,6 +39,18 @@
     "Last_Taken": "Last Taken",
     "Taken_By": "Taken By"
   },
+  "Book_Edit" : {
+    "Book_Name" : "Book Name",
+    "Author" : "Author",
+    "Category" : "Category",
+    "Publisher" : "Publisher",
+    "Published_Date" : "Published Date",
+    "Description" : "Book Summary",
+    "SelectImage" : "Select Image",
+    "SaveBook" : "Save Book",
+    "Code" : "Book Code",
+    "RemoveImage" : "Remove Image"
+  },
   "Login" : {
     "Login" : "Login",
     "Username" : "Username",
